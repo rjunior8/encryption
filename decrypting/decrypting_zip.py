@@ -1,7 +1,7 @@
 from zipfile import ZipFile
 
-zf = ZipFile("/home/boka/test3/aaa.zip")
-pass_file = open("/home/boka/test3/dictionary.txt")
+zf = ZipFile("~/test3/aaa.zip")
+pass_file = open("~/test3/dictionary.txt")
 
 for line in pass_file.readlines():
   password = line.strip("\n")
