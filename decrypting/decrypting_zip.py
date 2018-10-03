@@ -1,18 +1,15 @@
 from zipfile import ZipFile
 
-zf = ZipFile("file.zip")
-pass_file = open("dictionary.txt")
-
-attempts = 0
+zf = ZipFile("/home/boka/test3/aaa.zip")
+pass_file = open("/home/boka/test3/dictionary.txt")
 
 for line in pass_file.readlines():
-    password = line.strip("\n")
+  password = line.strip("\n")
 
-    try:
-        zf.extractall(pwd=password.encode("cp850", "replace"))
-        print("Password Found: {}\n".format(password))
-        exit(0)
-    except Exception as e:
-        attempts += 1
-        print("Searching... {} {}".format(attempts, e))
-        pass
+  try:
+    zf.extractall(pwd=password.encode("cp850", "replace"))
+    print("\nPassword Found: {}\n".format(password))
+    exit(0)
+  except Exception as e:
+    print("Searching... Bad password: {}".format(password))
+    continue
