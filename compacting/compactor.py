@@ -12,7 +12,7 @@ global zip_archive
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--input", required=True, help="Folder to be encrypt")
 ap.add_argument("-o", "--output", required=True, help="File name as output")
-ap.add_argument("-p", "--passwd", help="Define a password [You'll prompted]", action="store_false")
+ap.add_argument("-p", "--passwd", help="Define a password [You'll to be prompted]", action="store_false")
 args = vars(ap.parse_args())
 
 try:
@@ -30,7 +30,7 @@ try:
 
     zip_archive.close()
 
-    pyminizip.compress_multiple(zip_archive.namelist(), zip_file, "{}".format(getpass.getpass(prompt="Password: ", stream=None)), 5)
+    pyminizip.compress_multiple([item for item in zip_archive.namelist()], [os.path.abspath(args["input"])], zip_file, "{}".format(getpass.getpass(prompt="Password: ", stream=None)), 5)
 
     for arq in glob.glob('*'):
       if not os.path.splitext(arq)[1] == ".zip":
